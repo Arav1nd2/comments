@@ -14,6 +14,10 @@ import mail from '../assets/mail.svg'
 import {Container, Row, Col, Table, Button} from 'reactstrap';
 import {getRecordsThunk} from "../store";
 import {FaSearch} from 'react-icons/fa';
+import Comment from './comment/comment.js';
+
+
+
 function importAll(r) {
     let images = {};
     r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
@@ -36,6 +40,7 @@ class ListRecord extends React.Component {
         this.handleChange = this.handleChange.bind(this);
 
     }
+  
     handleChange(event) {
         this.setState({"search": event.target.value});
     }
@@ -102,7 +107,7 @@ class ListRecord extends React.Component {
             }
         }
 
-        return (
+            return (
             <Row>
                 <Col sm='12' md='12'>
 
@@ -192,6 +197,10 @@ class ListRecord extends React.Component {
                             <h5><b> Year of Study</b> : {this.state.person["year"]}</h5>
                             <h5> <b> About </b>: {this.state.person["about"]}</h5>
 
+                        </Container>
+                        <Container>
+                            <h5> <b>Comments </b></h5>
+                            <Comment childName = {this.state.person["name"]["first"]+this.state.person["name"]["last"]}/>
                         </Container>
                     </Col>
                 ) : ''}
